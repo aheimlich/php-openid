@@ -450,12 +450,14 @@ function detect_fetcher($r, &$out)
         }
 
         $url = $result->final_url;
-        if ($url != $expected_url) {
+//var_dump($result);
+//var_dump($url);
+        if (!$url == $expected_url) {
             $ok = false;
             if ($url == $fetch_url) {
                 $msg = 'The redirected URL was not returned.';
             } else {
-                $msg = 'An unexpected URL was returned: <' . $url . '>.';
+                $msg = 'An unexpected URL was returned: <a href="' . $url . '">'. $url . '</a>. tried to fetch <a href="' . $fetch_url . '">' . $fetch_url . '</a>';
             }
             $parts[] = $r->b($msg);
         }
