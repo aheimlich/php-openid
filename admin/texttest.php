@@ -1,17 +1,20 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 require_once 'Tests/TestDriver.php';
 require_once 'PHPUnit/Framework.php';
 require_once 'Console/Getopt.php';
+error_reporting(E_ALL & ~E_NOTICE);
 
 class TextTestResult extends PHPUnit_Framework_TestResult {
-  function addError(&$test, &$t, $time=0)
+  function addError(PHPUnit_Framework_Test $test, Exception $t, $time)
     {
       parent::addError($test, $t, $time);
         echo "E";
     }
 
-    function addFailure(&$test, &$t, $time=0)
+    function addFailure(PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $t, $time)
     {
         parent::addFailure($test, $t, $time);
         echo "F";
